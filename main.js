@@ -81,7 +81,7 @@ $y = prompt('Введите второе число');
 min($x, $y);
 
 function min($x,$y) {
-	$x > $y ? alert($x) : alert($y); 
+	$x > $y ? alert($x) : alert($y); // Заданий по тернарникам нет? Чет туго идут (
 }
 
 var x;
