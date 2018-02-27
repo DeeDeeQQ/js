@@ -9,23 +9,23 @@ function Student ({name, surname, grades})
         return this.name + " " + this.surname;
     }
 
-    Student.prototype.gradesAverage = function()
-    {
-        var sum = 0;
-        for (var i = 0; i < this.grades[i]; i++ ) sum += this.grades[i];
-        if (sum === 0)
-        {
-            return sum;
-        }
-        sum = sum / this.grades.length;
-        return sum.toFixed(2);
-    }
-
     if(!Student.list)
     {
         Student.list = [];
     }
     Student.list.push(this);
+}
+
+Student.prototype.gradesAverage = function()
+{
+    var sum = 0;
+    for (var i = 0; i < this.grades[i]; i++ ) sum += this.grades[i];
+    if (sum === 0)
+    {
+        return sum;
+    }
+    sum = sum / this.grades.length;
+    return sum.toFixed(2);
 }
 
 Student.prepareArray = function () {
