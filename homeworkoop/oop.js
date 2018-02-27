@@ -26,48 +26,55 @@ function Student ({name, surname, grades})
         Student.list = [];
     }
     Student.list.push(this);
+}
 
-    Student.showAllStudents = function()
+Student.prepareArray = function () {
+    var full = Student.list.map(function (item)
     {
-        var full = Student.list.map(function (item)
-        {
-             return {'ssulka' : item, 'fullName' : item.fullname(),'averageGrade' : item.gradesAverage()};
-        });
+        return {'ssulka' : item, 'fullName' : item.fullname(),'averageGrade' : item.gradesAverage()};
+    });
 
-        full.sort(function (a,b){
-            return b.averageGrade - a.averageGrade;
-        });
+    full.sort(function (a,b){
+        return b.averageGrade - a.averageGrade;
+    });
+    return full;
+}
 
-        if(this == "BestStudent"){
-            return full;
-        }
-        var msg = [];
+Student.prepareBest = function () {
+    var full = Student.prepareArray.call();
+    var best = full.shift();
+    return best
+}
 
-        full.forEach(function (item, i){
-            msg.push(i + ":" + "\"" + item.fullName + ". Средний бал = " + item.averageGrade + "\"");
-          });
+Student.showAllStudents = function()
+{
+    var full = Student.prepareArray.call()
+    var msg = [];
 
-        return msg;
-    }
-    Student.showBestStudent = function ()
-    {
-        var full = Student.showAllStudents.call("BestStudent");
-        var best = full.shift();
-        if(this == "Best"){
-            return best;
-        }
-        var msg = "\"" + best.fullName + " - лучший студент курса. Средний бал = " + best.averageGrade + "\"";
-        return msg;
-    }
-    Student.bestStudent = function () {
-        var a = Student.showBestStudent.call("Best");
-        return a.ssulka;
-    }
+    full.forEach(function (item, i){
+        msg.push(i + ":" + "\"" + item.fullName + ". Средний бал = " + item.averageGrade + "\"");
+    });
+
+    return msg;
+}
+
+Student.showBestStudent = function ()
+{
+    best = Student.prepareBest.call();
+    var msg = "\"" + best.fullName + " - лучший студент курса. Средний бал = " + best.averageGrade + "\"";
+    return msg;
+}
+
+Student.bestStudent = function () {
+    best = Student.prepareBest.call();
+    return best.ssulka;
 }
 
 var student1 = new Student ({name: 'Ivan', surname: 'Ivanov', grades: [1,1,5]});
-var student4 = new Student ({name: 'Zina', surname: 'Zinova', grades: [4,5,5]});
-var student5 = new Student ({name: 'Petr', surname: 'Petrov', grades: [8,5,5]});
-var student2 = new Student ({name: 'Ivsan', surname: 'Loran', grades: [4,1,5]});
-var student3 = new Student ({name: 'Lolo', surname: 'Pololo', grades: [4,3,5]});
+var student4 = new Student ({name: 'Ivan', surname: 'Ivanov', grades: [4,5,5]});
+var student5 = new Student ({name: 'Ivan', surname: 'Ivanov', grades: [8,5,5]});
+var student2 = new Student ({name: 'Ivsan', surname: 'Ivasnov', grades: [4,1,5]});
+var student3 = new Student ({name: 'Ivaaan', surname: 'Ivaaanov', grades: [4,3,5]});
 
+
+console.log(Student.bestStudent());
