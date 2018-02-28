@@ -41,14 +41,14 @@ Student.prepareArray = function () {
 }
 
 Student.prepareBest = function () {
-    var full = Student.prepareArray.call();
+    var full = Student.prepareArray();
     var best = full.shift();
     return best
 }
 
 Student.showAllStudents = function()
 {
-    var full = Student.prepareArray.call()
+    var full = Student.prepareArray()
     var msg = [];
 
     full.forEach(function (item, i){
@@ -60,13 +60,13 @@ Student.showAllStudents = function()
 
 Student.showBestStudent = function ()
 {
-    best = Student.prepareBest.call();
+    best = Student.prepareBest.();
     var msg = "\"" + best.fullName + " - лучший студент курса. Средний бал = " + best.averageGrade + "\"";
     return msg;
 }
 
 Student.bestStudent = function () {
-    best = Student.prepareBest.call();
+    best = Student.prepareBest();
     return best.ssulka;
 }
 
