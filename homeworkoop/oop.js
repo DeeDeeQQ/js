@@ -60,7 +60,7 @@ Student.showAllStudents = function()
 
 Student.showBestStudent = function ()
 {
-    best = Student.prepareBest.();
+    best = Student.prepareBest();
     var msg = "\"" + best.fullName + " - лучший студент курса. Средний бал = " + best.averageGrade + "\"";
     return msg;
 }
